@@ -11,7 +11,7 @@ IRsend irsend;
 IRrecv sensorIR (pinSensor);
 decode_results   comando;
 
-unsigned int valor[] = {8950, -4450, 600, -500, 600, -500, 600, -500, 600, -500, 600, -550, 550, -550, 550, -550, 550, -550, 600, -1650, 550, -1650, 600, -1650, 600, -1650, 550, -1700, 550, -1650, 600, -1650, 600, -1650, 550, -550, 600, -500, 600, -1650, 550, -550, 550, -550, 600, -500, 600, -500, 600, -500, 550, -1700, 550, -1700, 550, -550, 550, -1700, 550, -1650, 600, -1650, 600, -1650, 550, -1650, 600};
+//unsigned int valor[] = {8950, -4450, 600, -500, 600, -500, 600, -500, 600, -500, 600, -550, 550, -550, 550, -550, 550, -550, 600, -1650, 550, -1650, 600, -1650, 600, -1650, 550, -1700, 550, -1650, 600, -1650, 600, -1650, 550, -550, 600, -500, 600, -1650, 550, -550, 550, -550, 600, -500, 600, -500, 600, -500, 550, -1700, 550, -1700, 550, -550, 550, -1700, 550, -1650, 600, -1650, 600, -1650, 550, -1650, 600};
 
 void setup() {
 
@@ -30,10 +30,10 @@ void loop() {
   estado = digitalRead(pin_botao);
   if(estado == estado_ant){
     estado_ant = !estado;
-    //irsend.sendNEC(0xFF20DF, 32);
-    irsend.sendRaw(valor, sizeof(valor) / sizeof(valor[0]), frequencia);
+    irsend.sendNEC(0xFF20DF,32);
+    //irsend.sendRaw(valor, sizeof(valor) / sizeof(valor[0]), frequencia);
     Serial.println("OK!");
-    delay(2000);
+    //delay(2000);
   }
   if (sensorIR.decode(&comando)) {
     Serial.println(comando.value, HEX);
